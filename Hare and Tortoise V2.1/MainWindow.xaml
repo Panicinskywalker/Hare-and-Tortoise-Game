@@ -1,0 +1,62 @@
+﻿<Window x:Class="Hare_and_Tortoise_V2._1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hare_and_Tortoise_V2._1"
+        mc:Ignorable="d"
+        Title="Hare and Tortoise" Height="720" Width="1366">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="293*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Load previous" FontSize="25" Margin="1178,66,-93,3"/>
+        <TextBlock Text="Hare and Tortoise V2" FontSize="35" TextAlignment="Center" VerticalAlignment="Top" 
+                   HorizontalAlignment="Center" Height="47" Width="322"/>
+        <TextBlock Text="Enter participants details" TextAlignment="Center" FontSize="25" Margin="10,73,1069,567" Grid.RowSpan="2"/>
+        <TextBlock Text="Enter track length" FontSize="25" Margin="754,78,358,552" Grid.RowSpan="2"/>
+        <TextBlock Text="Name                    Minimum Speed                     Maximum Speed                Endurance" 
+                   FontSize="15" Margin="10,24,710,517" Grid.Row="1"/>
+        <TextBox x:Name="animalInput" HorizontalAlignment="Left" Margin="10,77,0,0" TextWrapping="Wrap" 
+                 Text="Animal Name" VerticalAlignment="Top" Width="120" Grid.Row="1" Height="18"/>
+        <Slider x:Name="minSpeedSlider"
+        TickFrequency="1" IsSnapToTickEnabled="True"
+        Minimum="0"
+        Maximum="50"
+        Value="0" Margin="135,77,1051,468"
+        AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Grid.Row="1"/>
+        <Button Content="Load From File" Margin="1178,59,60,476" Grid.Row="1" Click="LoadFromFile"/>
+        <Slider x:Name="maxSpeedSlider"
+        TickFrequency="1" IsSnapToTickEnabled="True"
+        Minimum="{Binding ElementName=minSpeedSlider, Path=Value}"
+        Maximum="50"
+        Value="50" Margin="315,77,871,468"
+        AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Grid.Row="1"/>
+        <Slider HorizontalAlignment="Left" Margin="506,77,0,0" VerticalAlignment="Top" Width="150" TickFrequency="1" IsSnapToTickEnabled="True"
+        Minimum="1" Maximum="300" x:Name="enduranceSlider" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Grid.Row="1" Height="18"/>
+        <TextBlock Text="Distance:" FontSize="15" Margin="757,95,485,444" Grid.Row="1"/>
+        <TextBlock Text="Num of Races" FontSize="15" Margin="757,8,485,531" Grid.Row="1"/>
+        <Slider x:Name="trackLengthSlider" TickFrequency="1" IsSnapToTickEnabled="True" Minimum="1000" Maximum="10000" 
+                AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Margin="754,137,412,393" Grid.Row="1"/>
+        <Slider x:Name="numRacesSlider" TickFrequency="1" IsSnapToTickEnabled="True" Minimum="1" Maximum="5" 
+                AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" Margin="754,47,412,478" Grid.Row="1"/>
+        <Button Content="Submit Animal" HorizontalAlignment="Left" Margin="10,108,0,0" 
+                VerticalAlignment="Top" RenderTransformOrigin="-0.207,0.08" Grid.Row="1" Click="SubmitAnimal" Height="20" Width="82"/>
+        <TextBlock x:Name="currentAnimals" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="168,201,0,0" Grid.Row="1" />
+        <ListBox x:Name="animalList" ItemsSource="{Binding MyDataCollection}" Margin="24,185,1260,120" Grid.Row="1"/>
+        <ListBox x:Name="minSpeedList" ItemsSource="{Binding MyDataCollection}" Margin="106,185,1178,120" Grid.Row="1"/>
+        <ListBox x:Name="maxSpeedList" ItemsSource="{Binding MyDataCollection}" Margin="188,185,1096,120" Grid.Row="1"/>
+        <ListBox x:Name="enduranceList" ItemsSource="{Binding MyDataCollection}" Margin="270,185,1014,120" Grid.Row="1"/>
+        <Button Content="Clear selection" FontSize="10" Click="ClearSelection" Margin="24,480,1252,66" Grid.Row="1"/>
+        <TextBlock Text="Current Animals (Max: 12)" FontSize="15" Margin="24,147,1014,390" Grid.Row="1"/>
+        <Button Content="Start Game" FontSize="30" Margin="506,326,540,120" Grid.Row="1" Click="StartGame"/>
+        <ComboBox x:Name="comboBox"  SelectionChanged="comboBox_SelectionChanged" ItemsSource="{Binding Items}" 
+                  HorizontalAlignment="Left" Margin="1021,196,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Wins" />
+            <ComboBoxItem Content="Alphabetical" />
+        </ComboBox>
+        <ListBox x:Name="leaderboard" Margin="1021,234,181,71" Grid.Row="1" FontSize="15"/>
+        <TextBlock Text="Sort leaderboard by:" FontSize="15" Margin="1021,158,170,390" Grid.Row="1"/>
+    </Grid>
+</Window>
